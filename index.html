@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year 2026 Countdown</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.cdnjs.com/css?family=Poppins:400,600,700" rel="stylesheet">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <main class="container">
+        <h1 class="title">Welcome 2025</h1>
+        <p class="subtitle">Counting down to 2026 - new beginning</p>
+        
+        <div class="countdown-wrapper">
+            <div class="countdown" role="timer" aria-live="polite">
+                <div class="time-segment">
+                    <div class="time-card">
+                        <span class="number" id="days">00</span>
+                    </div>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-segment">
+                    <div class="time-card">
+                        <span class="number" id="hours">00</span>
+                    </div>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-segment">
+                    <div class="time-card">
+                        <span class="number" id="minutes">00</span>
+                    </div>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-segment">
+                    <div class="time-card">
+                        <span class="number" id="seconds">00</span>
+                    </div>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="newYearMessage" class="new-year-message hidden">
+            <h2>Happy New Year 2026! 🎉</h2>
+            <div class="fireworks"></div>
+        </div>
+
+        <div class="quote-container">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p id="quote" aria-live="polite"></p>
+            <i class="fas fa-quote-right quote-icon"></i>
+        </div>
+    </main>
+
+    <div class="stars"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
