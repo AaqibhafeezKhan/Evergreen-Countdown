@@ -22,6 +22,7 @@ A premium, automated, and truly dynamic countdown system for your GitHub profile
 ## 🚀 Quick Setup
 
 ### 1. Profile README Integration
+
 Add the following to your main profile README:
 
 ```markdown
@@ -29,11 +30,14 @@ Add the following to your main profile README:
 ```
 
 ### 2. Web Countdown (GitHub Pages)
+
 1. Enable **GitHub Pages** in your repository settings.
 2. Visit `https://your-username.github.io/Evergreen-Countdown/` to see the full-page bespoke experience.
 
 ### 3. Deploying to Vercel
+
 To host your own live API endpoint:
+
 1. Fork this repository.
 2. Connect your repository to [Vercel](https://vercel.com/).
 3. Vercel will automatically detect the `vercel.json` and `api/` directory.
@@ -60,7 +64,16 @@ To change the countdown target, you can pass parameters to the Vercel URL:
 
 ---
 
-## 📝 Note on GitHub Pages
-Your **GitHub Pages** site will work perfectly alongside the Vercel dynamic SVG. 
-- **GitHub Pages** serves the static web files (`index.html`, `style.css`).
-- **Vercel** serves the live API endpoint for the image.
+## 📂 Project Structure
+
+- `api/`: Serverless functions for dynamic SVG generation.
+- `.github/workflows/`: Automation for keeping the countdown evergreen.
+- `index.html`: The main web dashboard.
+- `style.css`: Premium design system and animations.
+- `vercel.json`: Configuration for Vercel deployment and rewrites.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request if you have ideas for new features or improvements.
