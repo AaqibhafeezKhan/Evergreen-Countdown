@@ -32,6 +32,13 @@ Add the following to your main profile README:
 1. Enable **GitHub Pages** in your repository settings.
 2. Visit `https://your-username.github.io/Evergreen-Countdown/` to see the full-page bespoke experience.
 
+### 3. Deploying to Vercel
+To host your own live API endpoint:
+1. Fork this repository.
+2. Connect your repository to [Vercel](https://vercel.com/).
+3. Vercel will automatically detect the `vercel.json` and `api/` directory.
+4. Deploy and replace the URL in your README with your new Vercel deployment URL.
+
 ---
 
 ## 🛠️ Personalizing Your Date
