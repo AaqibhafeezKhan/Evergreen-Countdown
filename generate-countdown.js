@@ -119,6 +119,19 @@ const svg = `<svg
   role="img"
   aria-label="Countdown to ${TARGET_LABEL}: ${D} days ${H} hours ${M} minutes ${S} seconds"
 >
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .sep { animation: pulse 1s infinite; }
+    .sec { filter: drop-shadow(0 0 5px ${ACCENT}); }
+    .progress-fill { position: relative; overflow: hidden; }
+  </style>
   <rect width="${W}" height="${H_SVG}" fill="${BG}"/>
 
   <rect x="0" y="0" width="${W}" height="3" fill="${ACCENT}"/>
@@ -144,14 +157,27 @@ const svg = `<svg
   >UPDATED ${updatedAt}</text>
 
   ${segment(seg1X, D, 'DAYS')}
-  ${sepDots(seg2X - SEG_GAP / 2)}
+  <g class="sep">${sepDots(seg2X - SEG_GAP / 2)}</g>
   ${segment(seg2X, H, 'HOURS')}
-  ${sepDots(seg3X - SEG_GAP / 2)}
+  <g class="sep">${sepDots(seg3X - SEG_GAP / 2)}</g>
   ${segment(seg3X, M, 'MINUTES')}
-  ${sepDots(seg4X - SEG_GAP / 2)}
-  ${segment(seg4X, S, 'SECONDS')}
+  <g class="sep">${sepDots(seg4X - SEG_GAP / 2)}</g>
+  <g class="sec">${segment(seg4X, S, 'SECONDS')}</g>
 
   ${progressBar}
+  <defs>
+    <linearGradient id="shimmerGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="${ACCENT}" stop-opacity="0" />
+      <stop offset="50%" stop-color="${ACCENT}" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="${ACCENT}" stop-opacity="0" />
+    </linearGradient>
+    <clipPath id="barClip">
+      <rect x="${barX}" y="${barY}" width="${filled}" height="${barH}" rx="0" />
+    </clipPath>
+  </defs>
+  <rect x="${barX}" y="${barY}" width="${filled}" height="${barH}" fill="url(#shimmerGrad)" clip-path="url(#barClip)">
+    <animate attributeName="x" from="-${filled}" to="${filled}" dur="2s" repeatCount="indefinite" />
+  </rect>
 </svg>`;
 
 fs.writeFileSync('countdown.svg', svg.trim(), 'utf8');

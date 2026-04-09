@@ -1,76 +1,59 @@
+# ⏳ Evergreen Countdown
 
+A premium, automated, and truly dynamic countdown system for your GitHub profile and web pages.
 
-## Setup Instructions
-
-### 1 — Create the repository
-
-This countdown lives in a **public** GitHub repository. It can be:
-
-- Your profile README repo (`username/username`) — embeds directly on your GitHub profile page.
-- Any public repo — link the raw SVG from any README.
-
-### 2 — Add the files
-
-Copy these three files into the repo root:
-
-```
-your-repo/
-├── .github/
-│   └── workflows/
-│       └── update-countdown.yml
-├── generate-countdown.js
-└── README.md
-```
-
-### 3 — Push and let Actions run
-
-On first push the workflow runs immediately.
-After that it runs automatically every 5 minutes via cron.
-
-GitHub Actions will:
-
-1. Run `node generate-countdown.js`
-2. Commit the new `countdown.svg` back to the repo
-3. The raw SVG URL in your README reflects the latest version
-
-### 4 — Customise
-
-Open `.github/workflows/update-countdown.yml` and edit the `env` block:
-
-```yaml
-env:
-  TARGET_YEAR: 2027
-  TARGET_LABEL: "2027"
-```
-
-Alternatively, `generate-countdown.js` will automatically target Jan 1st of the next year if no environment variables are provided.
-
-That's it. No npm install, no dependencies — pure Node.js built-ins only.
+<div align="center">
+  <img src="https://evergreen-countdown.vercel.app/api/countdown" alt="Live Countdown" />
+  <br />
+  <p><i>Real-time dynamic SVG powered by Vercel Serverless Functions.</i></p>
+</div>
 
 ---
 
-## How it works
+## 🌟 Features
 
-```
-GitHub Cron (*/5 * * * *)
-        │
-        ▼
-  generate-countdown.js
-        │
-        ▼
-  git commit countdown.svg
-        │
-        ▼
-  README embeds raw SVG URL
-```
-
-The SVG is a static file served by GitHub's raw CDN.
-It updates every 5 minutes.
+- **Truly Dynamic**: Uses Vercel Serverless Functions to serve a "Live" SVG that updates accurately to the second upon refresh.
+- **Premium Web App**: A bespoke, glassmorphic full-page countdown hosted on **GitHub Pages**.
+- **Zero Commit Clutter**: No more automated robot commits filling up your Git history.
+- **Next-Year Rollover**: Automatically targets the next January 1st if no target is specified.
 
 ---
 
-## Notes
+## 🚀 Quick Setup
 
-- GitHub sanitises `<script>` tags inside SVGs served via `raw.githubusercontent.com`, so client-side JS countdowns don't work in profile READMEs. The GitHub Actions approach is the correct workaround.
-- The workflow uses `[skip ci]` in its commit message to avoid triggering itself recursively.
-- Seconds shown in the SVG reflect the exact moment the Action ran.
+### 1. Profile README Integration
+Add the following to your main profile README:
+
+```markdown
+![Live Countdown](https://evergreen-countdown.vercel.app/api/countdown)
+```
+
+### 2. Web Countdown (GitHub Pages)
+1. Enable **GitHub Pages** in your repository settings.
+2. Visit `https://your-username.github.io/Evergreen-Countdown/` to see the full-page bespoke experience.
+
+---
+
+## 🛠️ Personalizing Your Date
+
+To change the countdown target, you can pass parameters to the Vercel URL:
+
+`https://evergreen-countdown.vercel.app/api/countdown?year=2030&label=Vision+2030`
+
+- `year`: The target year.
+- `label`: Supporting text shown in the header.
+
+---
+
+## 💻 Tech Stack
+
+- **Frontend**: Vanilla JS, HTML, CSS (Inter & JetBrains Mono fonts).
+- **Backend**: Node.js Serverless Function (Vercel).
+- **Automation**: GitHub Actions (for repository sync).
+
+---
+
+## 📝 Note on GitHub Pages
+Your **GitHub Pages** site will work perfectly alongside the Vercel dynamic SVG. 
+- **GitHub Pages** serves the static web files (`index.html`, `style.css`).
+- **Vercel** serves the live API endpoint for the image.
