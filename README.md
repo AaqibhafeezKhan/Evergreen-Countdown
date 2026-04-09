@@ -1,12 +1,4 @@
-# ⬛ YOUR NAME
 
-![Countdown](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/countdown.svg)
-
----
-
-> Replace `YOUR_USERNAME` and `YOUR_REPO` above with your actual GitHub username and repository name.
-
----
 
 ## Setup Instructions
 
