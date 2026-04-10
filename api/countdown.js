@@ -6,11 +6,11 @@ export default function handler(req, res) {
   const TARGET_YEAR = req.query.year ? parseInt(req.query.year) : defaultYear;
   const TARGET_LABEL = req.query.label || String(TARGET_YEAR);
 
-  const ACCENT = '#CCFF00';
-  const BG = '#0A0A0A';
-  const FG = '#F5F5F0';
-  const DIM = '#555555';
-  const BORDER = '#222222';
+  const ACCENT       = '#A855F7';
+  const BG           = '#0D1117';
+  const FG           = '#FFFFFF';
+  const DIM          = '#8B949E';
+  const BORDER       = '#30363D';
   const FONT = 'JetBrains Mono, Courier New, monospace';
 
   const target = new Date(`January 1, ${TARGET_YEAR} 00:00:00 UTC`);

@@ -5,11 +5,11 @@ const defaultYear   = now.getUTCFullYear() + (now.getUTCMonth() === 0 && now.get
 const TARGET_YEAR   = process.env.TARGET_YEAR ? parseInt(process.env.TARGET_YEAR) : defaultYear;
 const TARGET_LABEL  = process.env.TARGET_LABEL || String(TARGET_YEAR);
 
-const ACCENT       = '#CCFF00';
-const BG           = '#0A0A0A';
-const FG           = '#F5F5F0';
-const DIM          = '#555555';
-const BORDER       = '#222222';
+const ACCENT       = '#A855F7';
+const BG           = '#0D1117';
+const FG           = '#FFFFFF';
+const DIM          = '#8B949E';
+const BORDER       = '#30363D';
 const FONT         = 'JetBrains Mono, Courier New, monospace';
 
 const target = new Date(`January 1 ${TARGET_YEAR} 00:00:00 UTC`);
