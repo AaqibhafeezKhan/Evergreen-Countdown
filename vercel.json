@@ -3,6 +3,10 @@
     {
       "source": "/api/countdown",
       "destination": "/api/countdown.js"
+    },
+    {
+      "source": "/api/countdown.svg",
+      "destination": "/api/countdown.js"
     }
   ],
   "headers": [
