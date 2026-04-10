@@ -26,7 +26,7 @@ A premium, automated, and truly dynamic countdown system for your GitHub profile
 Add the following to your main profile README:
 
 ```markdown
-![Live Countdown](https://evergreen-countdown.vercel.app/api/countdown)
+![Countdown](https://countdown2026.vercel.app/api/countdown?year=2030&label=MY_GOAL_2030)
 ```
 
 ### 2. Web Countdown (GitHub Pages)
