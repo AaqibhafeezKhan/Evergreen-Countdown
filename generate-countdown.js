@@ -1,49 +1,53 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const now           = new Date();
-const defaultYear   = now.getUTCFullYear() + (now.getUTCMonth() === 0 && now.getUTCDate() === 1 ? 0 : 1);
-const TARGET_YEAR   = process.env.TARGET_YEAR ? parseInt(process.env.TARGET_YEAR) : defaultYear;
-const TARGET_LABEL  = process.env.TARGET_LABEL || String(TARGET_YEAR);
+const now = new Date();
+const defaultYear =
+  now.getUTCFullYear() +
+  (now.getUTCMonth() === 0 && now.getUTCDate() === 1 ? 0 : 1);
+const TARGET_YEAR = process.env.TARGET_YEAR
+  ? parseInt(process.env.TARGET_YEAR)
+  : defaultYear;
+const TARGET_LABEL = process.env.TARGET_LABEL || String(TARGET_YEAR);
 
-const ACCENT       = '#A855F7';
-const BG           = '#0D1117';
-const FG           = '#FFFFFF';
-const DIM          = '#8B949E';
-const BORDER       = '#30363D';
-const FONT         = 'JetBrains Mono, Courier New, monospace';
+const ACCENT = "#A855F7";
+const BG = "#0D1117";
+const FG = "#FFFFFF";
+const DIM = "#8B949E";
+const BORDER = "#30363D";
+const FONT = "JetBrains Mono, Courier New, monospace";
 
 const target = new Date(`January 1 ${TARGET_YEAR} 00:00:00 UTC`);
-const diff   = Math.max(0, target - now);
+const diff = Math.max(0, target - now);
 
 const totalSeconds = Math.floor(diff / 1000);
-const days         = Math.floor(totalSeconds / 86400);
-const hours        = Math.floor((totalSeconds % 86400) / 3600);
-const minutes      = Math.floor((totalSeconds % 3600)  / 60);
-const seconds      = totalSeconds % 60;
+const days = Math.floor(totalSeconds / 86400);
+const hours = Math.floor((totalSeconds % 86400) / 3600);
+const minutes = Math.floor((totalSeconds % 3600) / 60);
+const seconds = totalSeconds % 60;
 
-const pad = n => String(n).padStart(2, '0');
+const pad = (n) => String(n).padStart(2, "0");
 
 const D = pad(days);
 const H = pad(hours);
 const M = pad(minutes);
 const S = pad(seconds);
 
-const updatedAt = now.toUTCString().replace(/:\d{2} GMT/, ' UTC');
+const updatedAt = now.toUTCString().replace(/:\d{2} GMT/, " UTC");
 
-const yearStart  = new Date(`January 1 ${now.getUTCFullYear()} 00:00:00 UTC`);
-const yearEnd    = new Date(`January 1 ${now.getUTCFullYear() + 1} 00:00:00 UTC`);
-const progress   = Math.min(1, (now - yearStart) / (yearEnd - yearStart));
+const yearStart = new Date(`January 1 ${now.getUTCFullYear()} 00:00:00 UTC`);
+const yearEnd = new Date(`January 1 ${now.getUTCFullYear() + 1} 00:00:00 UTC`);
+const progress = Math.min(1, (now - yearStart) / (yearEnd - yearStart));
 const progressPct = (progress * 100).toFixed(1);
 
 const W = 860;
 const H_SVG = 220;
 
 function segment(x, value, label) {
-    const bw = 160;
-    const bh = 110;
-    const by = 42;
+  const bw = 160;
+  const bh = 110;
+  const by = 42;
 
-    return `
+  return `
   <rect x="${x}" y="${by}" width="${bw}" height="${bh}" fill="${BORDER}" rx="0"/>
   <rect x="${x + 1}" y="${by + 1}" width="${bw - 2}" height="${bh - 2}" fill="${BG}" rx="0"/>
   <text
@@ -69,10 +73,10 @@ function segment(x, value, label) {
   >${label}</text>`;
 }
 
-const barX   = 40;
-const barY   = H_SVG - 32;
-const barW   = W - 80;
-const barH   = 6;
+const barX = 40;
+const barY = H_SVG - 32;
+const barW = W - 80;
+const barH = 6;
 const filled = Math.round(barW * progress);
 
 const progressBar = `
@@ -97,9 +101,9 @@ const progressBar = `
   >${progressPct}%</text>
 `;
 
-const SEG_GAP  = 20;
-const SEG_W    = 160;
-const startX   = (W - (4 * SEG_W + 3 * SEG_GAP)) / 2;
+const SEG_GAP = 20;
+const SEG_W = 160;
+const startX = (W - (4 * SEG_W + 3 * SEG_GAP)) / 2;
 
 const seg1X = startX;
 const seg2X = startX + SEG_W + SEG_GAP;
@@ -107,7 +111,7 @@ const seg3X = startX + (SEG_W + SEG_GAP) * 2;
 const seg4X = startX + (SEG_W + SEG_GAP) * 3;
 
 function sepDots(x) {
-    return `
+  return `
   <text x="${x}" y="102" font-family="${FONT}" font-size="28" font-weight="800" fill="${ACCENT}" text-anchor="middle">:</text>`;
 }
 
@@ -156,13 +160,13 @@ const svg = `<svg
     letter-spacing="1"
   >UPDATED ${updatedAt}</text>
 
-  ${segment(seg1X, D, 'DAYS')}
+  ${segment(seg1X, D, "DAYS")}
   <g class="sep">${sepDots(seg2X - SEG_GAP / 2)}</g>
-  ${segment(seg2X, H, 'HOURS')}
+  ${segment(seg2X, H, "HOURS")}
   <g class="sep">${sepDots(seg3X - SEG_GAP / 2)}</g>
-  ${segment(seg3X, M, 'MINUTES')}
+  ${segment(seg3X, M, "MINUTES")}
   <g class="sep">${sepDots(seg4X - SEG_GAP / 2)}</g>
-  <g class="sec">${segment(seg4X, S, 'SECONDS')}</g>
+  <g class="sec">${segment(seg4X, S, "SECONDS")}</g>
 
   ${progressBar}
   <defs>
@@ -180,5 +184,5 @@ const svg = `<svg
   </rect>
 </svg>`;
 
-fs.writeFileSync('countdown.svg', svg.trim(), 'utf8');
+fs.writeFileSync("countdown.svg", svg.trim(), "utf8");
 console.log(`✓ countdown.svg generated — ${D}d ${H}h ${M}m ${S}s remaining`);
